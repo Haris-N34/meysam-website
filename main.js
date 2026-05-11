@@ -56,8 +56,8 @@ const siteContent = {
         title: "Wedding Event Performances",
         description:
           "Performed at a range of wedding events, from the bride's walk-in to live music throughout the celebration, creating a polished and memorable atmosphere from start to finish.",
-        image: "./assets/images/performance-acoustic-private.jpg",
-        position: "center 48%",
+        image: "./assets/images/performance-wedding-new-wide-a.jpg",
+        position: "center center",
         glow: "rgba(180, 122, 92, 0.18)",
       },
       {

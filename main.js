@@ -74,29 +74,33 @@ const siteContent = {
     title: "Gallery / Live Performance",
     items: [
       {
-        src: "./assets/images/artist-stage-primary.png",
+        src: "./assets/images/gallery-1.png",
         alt: "Live guitar performance detail",
+        videoUrl: "https://www.youtube.com/shorts/9AllhY-UC2k",
         className: "portrait",
-        position: "right 30%",
+        position: "center center",
         glow: "rgba(71, 128, 255, 0.26)",
       },
       {
-        src: "./assets/images/artist-stage-detail.png",
-        alt: "Electric guitar detail under cinematic lighting",
+        src: "./assets/images/gallery-2.png",
+        alt: "Live vocal performance with green stage lighting",
+        videoUrl: "https://www.youtube.com/shorts/2fi9kawp5oo",
         className: "small",
-        position: "center 18%",
+        position: "center center",
         glow: "rgba(108, 71, 255, 0.18)",
       },
       {
-        src: "./assets/images/artist-stage-primary.png",
-        alt: "Artist onstage with electric guitar",
+        src: "./assets/images/gallery-3.jpeg",
+        alt: "Solo live guitar performance on stage",
+        videoUrl: "https://www.youtube.com/shorts/B67xYwVMQCI",
         className: "tall",
-        position: "center 8%",
+        position: "center center",
         glow: "rgba(42, 99, 217, 0.18)",
       },
       {
         src: "./assets/images/artist-stage-primary.png",
         alt: "Performance portrait with guitar",
+        comingSoon: true,
         className: "wide",
         position: "center 14%",
         glow: "rgba(88, 138, 255, 0.22)",
@@ -314,9 +318,17 @@ const renderGallery = () => `
         ${siteContent.gallery.items
           .map(
             (item) => `
-              <figure class="gallery-item ${item.className}" style="--image-position:${item.position}; --gallery-glow:${item.glow};">
-                <img src="${item.src}" alt="${item.alt}" loading="lazy" />
-              </figure>
+              ${
+                item.videoUrl
+                  ? `<a class="gallery-item ${item.className}" href="${item.videoUrl}" aria-label="Watch ${item.alt} on YouTube" style="--image-position:${item.position}; --gallery-glow:${item.glow};">
+                      <img src="${item.src}" alt="${item.alt}" loading="lazy" />
+                      <span class="gallery-play-button" aria-hidden="true"></span>
+                    </a>`
+                  : `<figure class="gallery-item ${item.className} ${item.comingSoon ? "coming-soon" : ""}" style="--image-position:${item.position}; --gallery-glow:${item.glow};">
+                      <img src="${item.src}" alt="${item.alt}" loading="lazy" />
+                      ${item.comingSoon ? `<figcaption class="coming-soon-label">Coming Soon</figcaption>` : ""}
+                    </figure>`
+              }
             `,
           )
           .join("")}

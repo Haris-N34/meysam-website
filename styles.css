@@ -669,12 +669,25 @@ button {
 .gallery-item {
   break-inside: avoid;
   position: relative;
+  display: block;
   overflow: hidden;
   margin-bottom: 18px;
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: var(--panel);
+  color: inherit;
+  cursor: default;
+  text-decoration: none;
+  outline: none;
   box-shadow: var(--shadow);
+}
+
+.gallery-item[href] {
+  cursor: pointer;
+}
+
+.gallery-item:focus-visible {
+  box-shadow: var(--shadow), 0 0 0 2px var(--accent);
 }
 
 .gallery-item::before,
@@ -706,8 +719,72 @@ button {
   transition: transform 360ms ease, filter 360ms ease;
 }
 
-.gallery-item:hover img,
-.gallery-item:focus-within img {
+.gallery-item.coming-soon img {
+  filter: blur(8px) saturate(0.68) contrast(0.92) brightness(0.42);
+  transform: scale(1.08);
+}
+
+.gallery-item.coming-soon::before {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.6)),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 44%);
+}
+
+.coming-soon-label {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(6, 6, 6, 0.62);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.gallery-play-button {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(0, 0, 0, 0.44);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.36);
+  transform: translate(-50%, -50%);
+  transition: transform 240ms ease, background 240ms ease, border-color 240ms ease;
+}
+
+.gallery-play-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid rgba(255, 255, 255, 0.94);
+  transform: translate(-42%, -50%);
+}
+
+.gallery-item[href]:hover .gallery-play-button,
+.gallery-item[href]:focus-visible .gallery-play-button {
+  background: rgba(0, 0, 0, 0.58);
+  border-color: rgba(255, 255, 255, 0.92);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.gallery-item[href]:hover img,
+.gallery-item[href]:focus-within img {
   transform: scale(1.08);
   filter: saturate(1.03) contrast(1.08) brightness(0.9);
 }
